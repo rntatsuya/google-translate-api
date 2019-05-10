@@ -19,7 +19,7 @@ var options = {
   host: "ipv4bot.whatismyipaddress.com",
   port: 80,
   path: "/",
-  agent
+  agent: agent.agent
 };
 
 var languages = require('./languages');
