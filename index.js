@@ -5,12 +5,21 @@ var safeEval = require('safe-eval');
 var token = require('google-translate-token');
 var tunnel = require('tunnel');
 
-var agent = tunnel.httpsOverHttp({
-    proxy: {
-        host: 'localhost',
-        port: 9050
-    }
-});
+// var agent = tunnel.httpsOverHttp({
+//     proxy: {
+//         host: 'localhost',
+//         port: 9050
+//     }
+// });
+
+var agent = {
+    agent: tunnel.httpOverHttp({
+        proxy: {
+            host: 'localhost',
+            port: 9050
+        }
+    }) 
+}
 
 var languages = require('./languages');
 
