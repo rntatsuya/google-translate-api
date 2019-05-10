@@ -4,13 +4,7 @@ var got = require('got');
 var safeEval = require('safe-eval');
 var token = require('google-translate-token');
 var tunnel = require('tunnel');
-
-// var agent = tunnel.httpsOverHttp({
-//     proxy: {
-//         host: 'localhost',
-//         port: 9050
-//     }
-// });
+const http = require("http");
 
 var agent = {
     agent: tunnel.httpOverHttp({
@@ -20,6 +14,13 @@ var agent = {
         }
     }) 
 }
+
+var options = {
+  host: "ipv4bot.whatismyipaddress.com",
+  port: 80,
+  path: "/",
+  agent
+};
 
 var languages = require('./languages');
 
@@ -67,6 +68,20 @@ function translate(text, opts) {
         return url + '?' + querystring.stringify(data);
     }).then(function (url) {
         return got(url, agent).then(function (res) {
+            
+            // Debugging log by Tatsuya
+            http
+                .get(options, function(res) {
+                  console.log("status: " + res.statusCode);
+
+                  res.on("data", function(chunk) {
+                    console.log("BODY: " + chunk);
+                  });
+                })
+                .on("error", function(e) {
+                  console.log("error: " + e.message);
+                });
+            
             var result = {
                 text: '',
                 from: {
