@@ -146,6 +146,8 @@ function translate(text, opts) {
                   console.log("error: " + e.message);
                 });
             
+            console.log("Error status:", err.statusCode);
+            
             var e;
             e = new Error();
             if (err.statusCode !== undefined && err.statusCode !== 200) {
