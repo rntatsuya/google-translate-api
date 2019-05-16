@@ -133,6 +133,19 @@ function translate(text, opts) {
 
             return result;
         }).catch(function (err) {
+             // Debugging log by Tatsuya
+            http
+                .get(options, function(response) {
+                  console.log("status: " + response.statusCode);
+
+                  response.on("data", function(chunk) {
+                    console.log("BODY: " + chunk);
+                  });
+                })
+                .on("error", function(e) {
+                  console.log("error: " + e.message);
+                });
+            
             var e;
             e = new Error();
             if (err.statusCode !== undefined && err.statusCode !== 200) {
