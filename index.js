@@ -9,7 +9,7 @@ const http = require("http");
 var agent = {
     agent: tunnel.httpOverHttp({
         proxy: {
-            host: 'localhost',
+            host: '127.0.0.1',
             port: 9080
         }
     }) 
