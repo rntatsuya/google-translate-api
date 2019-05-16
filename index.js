@@ -17,7 +17,7 @@ var agent = {
 
 var options = {
   host: "ipv4bot.whatismyipaddress.com",
-  port: 80,
+  port: 8080,
   path: "/",
   agent: agent.agent
 };
