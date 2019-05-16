@@ -9,7 +9,7 @@ const http = require("http");
 var agent = {
     agent: tunnel.httpOverHttp({
         proxy: {
-            host: 'ec2-18-232-99-49.compute-1.amazonaws.com',
+            host: 'localhost',
             port: 9080
         }
     }) 
